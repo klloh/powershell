@@ -46,63 +46,63 @@ Get-PnPListItem [-List] <ListPipeBind> [-Query <String>] [-FolderServerRelativeU
 
 ### EXAMPLE 1
 ```powershell
-Get-PnPListItem -List Tasks
+Get-PnPListItem -List "Tasks"
 ```
 
 Retrieves all list items from the Tasks list
 
 ### EXAMPLE 2
 ```powershell
-Get-PnPListItem -List Tasks -Id 1
+Get-PnPListItem -List "Tasks" -Id 1
 ```
 
 Retrieves the list item with ID 1 from the Tasks list
 
 ### EXAMPLE 3
 ```powershell
-Get-PnPListItem -List Tasks -UniqueId bd6c5b3b-d960-4ee7-a02c-85dc6cd78cc3
+Get-PnPListItem -List "Tasks" -UniqueId bd6c5b3b-d960-4ee7-a02c-85dc6cd78cc3
 ```
 
 Retrieves the list item with UniqueId or GUID bd6c5b3b-d960-4ee7-a02c-85dc6cd78cc3 from the tasks lists
 
 ### EXAMPLE 4
 ```powershell
-(Get-PnPListItem -List Tasks -Fields "Title","GUID").FieldValues
+(Get-PnPListItem -List "Tasks" -Fields "Title","GUID").FieldValues
 ```
 
 Retrieves all list items, but only includes the values of the Title and GUID fields in the list item object
 
 ### EXAMPLE 5
 ```powershell
-Get-PnPListItem -List Tasks -Query "<View><Query><Where><Eq><FieldRef Name='GUID'/><Value Type='Guid'>bd6c5b3b-d960-4ee7-a02c-85dc6cd78cc3</Value></Eq></Where></Query></View>"
+Get-PnPListItem -List "Tasks" -Query "<View><Query><Where><Eq><FieldRef Name='GUID'/><Value Type='Guid'>bd6c5b3b-d960-4ee7-a02c-85dc6cd78cc3</Value></Eq></Where></Query></View>"
 ```
 
 Retrieves all available fields of list items based on the CAML query specified
 
 ### EXAMPLE 6
 ```powershell
-Get-PnPListItem -List Tasks -Query "<View><ViewFields><FieldRef Name='Title'/><FieldRef Name='Modified'/></ViewFields><Query><Where><Geq><FieldRef Name='Modified'/><Value Type='DateTime'><Today/></Value></Eq></Where></Query></View>"
+Get-PnPListItem -List "Tasks" -Query "<View><ViewFields><FieldRef Name='Title'/><FieldRef Name='Modified'/></ViewFields><Query><Where><Geq><FieldRef Name='Modified'/><Value Type='DateTime'><Today/></Value></Eq></Where></Query></View>"
 ```
 
 Retrieves all list items modified today, retrieving the columns 'Title' and 'Modified'. When you use -Query, you can add a <ViewFields> clause to retrieve specific columns (since you cannot use -Fields)
 
 ### EXAMPLE 7
 ```powershell
-Get-PnPListItem -List Tasks -PageSize 1000
+Get-PnPListItem -List "Tasks" -PageSize 1000
 ```
 
 Retrieves all list items from the Tasks list in pages of 1000 items
 
 ### EXAMPLE 8
 ```powershell
-Get-PnPListItem -List Tasks -PageSize 1000 -ScriptBlock { Param($items) $items.Context.ExecuteQuery() } | ForEach-Object { $_.BreakRoleInheritance($true, $true) }
+Get-PnPListItem -List "Tasks" -PageSize 1000 -ScriptBlock { Param($items) $items.Context.ExecuteQuery() } | ForEach-Object { $_.BreakRoleInheritance($true, $true) }
 ```
 
 Retrieves all list items from the Tasks list in pages of 1000 items and breaks permission inheritance on each item
 
 ### EXAMPLE 9
 ```powershell
-Get-PnPListItem -List Samples -FolderServerRelativeUrl "/sites/contosomarketing/Lists/Samples/Demo"
+Get-PnPListItem -List "Samples" -FolderServerRelativeUrl "/sites/contosomarketing/Lists/Samples/Demo"
 ```
 
 Retrieves all list items from the Demo folder in the Samples list located in the contosomarketing site collection
